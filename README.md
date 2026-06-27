@@ -1,95 +1,93 @@
-# Descripció - Enunciat de l'exercici
-Aquest projecte consisteix en el desenvolupament d'una API REST per a gestionar un joc de Blackjack. L'objectiu principal és implementar una arquitectura de microserveis o modular que permeti:
+# Descripción
+Este proyecto consiste en el desarrollo de una API REST para gestionar un juego de Blackjack. El objetivo principal es implementar una arquitectura de microservicios o modular que permita:
 
-Registrar i modificar jugadors.
+Registrar y modificar jugadores.
 
-Jugar partides de Blackjack (lògica de cartes i punts).
+Jugar partidas de Blackjack (lógica de cartas y puntos).
 
-Emmagatzemar l'historial de partides i estadístiques.
+Almacenar el historial de partidas y estadísticas.
 
-Gestionar rànquings de guanyadors i perdedors.
+Gestionar rankings de ganadores y perdedores.
 
-La particularitat tècnica d'aquest exercici és la persistència híbrida de dades:
+La particularidad técnica de este ejercicio es la persistencia híbrida de datos:
 
-MySQL: Per emmagatzemar les dades dels jugadors (Relacional).
+MySQL: Para almacenar los datos de los jugadores (Relacional).
 
-MongoDB: Per emmagatzemar les partides jugades (NoSQL).
+MongoDB: Para almacenar las partidas jugadas (NoSQL).
 
-# Tecnologies Utilitzades
-El projecte s'ha desenvolupat utilitzant les següents tecnologies i eienes:
+# Tecnologías Utilizadas
+El proyecto se ha desarrollado utilizando las siguientes tecnologías y herramientas:
 
-Llenguatge: Java 21 (Eclipse Temurin).
+Lenguaje: Java 21 (Eclipse Temurin).
 
 Framework: Spring Boot (Spring Data JPA, Spring Data MongoDB).
 
-Bases de Dades:
+Bases de Datos:
 
 MySQL 8.0
 
 MongoDB 6.0
 
-Contenidorització: Docker i Docker Compose.
+Contenerización: Docker y Docker Compose.
 
-Documentació API: Swagger / OpenAPI (SpringDoc).
+Documentación API: Swagger / OpenAPI (SpringDoc).
 
 Build Tool: Maven.
 
-Repositori d'Imatges: Docker Hub.
+Repositorio de Imágenes: Docker Hub.
 
-# Requisits
-Per a executar aquest projecte en local, es necessiten els següents requisits previs:
+# Requisitos
+Para ejecutar este proyecto en local, se necesitan los siguientes requisitos previos:
 
-Docker Desktop instal·lat i en execució (Imprescindible per a les bases de dades).
+Docker Desktop instalado y en ejecución (Imprescindible para las bases de datos).
 
-Git (per clonar el repositori).
+Git (para clonar el repositorio).
 
-(Opcional) Java 21 i Maven instal·lats si es vol executar fora de Docker.
+(Opcional) Java 21 y Maven instalados si se desea ejecutar fuera de Docker.
 
-(Opcional) IntelliJ IDEA o Eclipse per al desenvolupament.
+(Opcional) IntelliJ IDEA o Eclipse para el desarrollo.
 
-# Instal·lació
-Segueix aquests passos per configurar l'entorn en local:
+# Instalación
+Sigue estos pasos para configurar el entorno en local:
 
-Clonar el repositori:
-git clone <URL_DEL_TEU_REPOSITORI>
+Clonar el repositorio:
+git clone <URL_DEL_TEU_REPOSITORIO>
 cd blackjack-api
 
-Generar l'artefacte (.jar): És necessari compilar el projecte abans de construir la imatge Docker.
+Generar el artefacto (.jar): Es necesario compilar el proyecto antes de construir la imagen Docker.
 ./mvnw clean package -DskipTests
 
-Construir la imatge Docker (Opcional si es fa servir Docker Hub):
+Construir la imagen Docker (Opcional si se utiliza Docker Hub):
 docker build -t blackjack-api .
 
-# Execució
-Hi ha dues maneres d'executar el projecte.
+# Ejecución
+Hay dos formas de ejecutar el proyecto.
 
-Opció A: Entorn Complet amb Docker Compose (Recomanat)
-Això aixecarà l'API, MySQL i MongoDB automàticament.
+Opción A: Entorno Completo con Docker Compose (Recomendado)
+Esto levantará la API, MySQL y MongoDB automáticamente.
 
-Executa la comanda:
+Ejecuta el pedido:
 docker-compose up -d
 
-L'API estarà disponible al port 8082.
+La API estará disponible en el puerto 8082.
 Swagger UI: http://localhost:8082/webjars/swagger-ui/index.html
 
-Opció B: Entorn de Desenvolupament (Híbrid)
-Si vols desenvolupar amb IntelliJ però utilitzant les bases de dades de Docker.
+Opción B: Entorno de Desarrollo (Híbrido)
+Si quieres desarrollar con IntelliJ pero utilizando las bases de datos de Docker.
 
-Assegura't que els contenidors de DB estan corrent (docker-compose up -d).
+Asegúrate de que los contenedores de DB están corriendo (docker-compose up -d).
 
-Executa l'aplicació des del teu IDE (IntelliJ).
+Ejecuta la aplicación desde tu IDE (IntelliJ).
 
-L'API de desenvolupament estarà disponible al port 8081.
+La API de desarrollo estará disponible en el puerto 8081.
 
-# Desplegament
-La imatge del projecte està pujada i disponible a Docker Hub. Per a desplegar l'aplicació en qualsevol servidor amb Docker instal·lat, no cal clonar el codi, només baixar la imatge:
+# Despliegue
+La imagen del proyecto está subida y disponible en Docker Hub. Para desplegar la aplicación en cualquier servidor con Docker instalado, no es necesario clonar el código, sólo descargar la imagen:
 
-Descarregar la imatge:
+Descargar la imagen:
 docker pull spook242/blackjack-api:v1.0
 
-Execució: Per al correcte funcionament, s'ha d'executar connectant-la a les bases de dades corresponents (o utilitzant un fitxer docker-compose.yml que referenciï aquesta imatge).
+Ejecución: Para su correcto funcionamiento, debe ejecutarse conectándola a las bases de datos correspondientes (o utilizando un archivo docker-compose.yml que referencie esta imagen).
 
-Exemple bàsic d'execució (requereix xarxa configurada amb bases de dades):
+Ejemplo básico de ejecución (requiere red configurada con bases de datos):
 docker run -p 8080:8081 --name blackjack-app spook242/blackjack-api:v1.0
-
-
